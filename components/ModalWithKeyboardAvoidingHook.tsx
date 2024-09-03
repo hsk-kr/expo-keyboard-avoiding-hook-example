@@ -1,8 +1,11 @@
-import { ReactNode } from 'react';
 import { StyleSheet, Modal, View, Button } from 'react-native';
 import AnimatedFormWithKeyboardAvoidingHook from './AnimatedFormWithKeyboardAvoidingHook';
 
-export default function ModalWithKeyboardAvoidingHook() {
+export default function ModalWithKeyboardAvoidingHook({
+  onClose,
+}: {
+  onClose: VoidFunction;
+}) {
   return (
     <Modal>
       <View style={styles.container}>
@@ -11,7 +14,7 @@ export default function ModalWithKeyboardAvoidingHook() {
             <AnimatedFormWithKeyboardAvoidingHook />
           </View>
           <View style={styles.footer}>
-            <Button title="close" />
+            <Button title="close" onPress={onClose} />
           </View>
         </View>
       </View>
