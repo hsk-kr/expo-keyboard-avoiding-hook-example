@@ -11,7 +11,7 @@ export const KeyboardAvoidingContext =
 
 export const KeyboardAvoidingProvider = ({
   children,
-  padding,
+  padding = 0,
   duration = 250,
 }: {
   children: ReactNode;
@@ -32,9 +32,7 @@ export const KeyboardAvoidingProvider = ({
         const keyboardStartY = e.endCoordinates.screenY;
         const bottomY = height + pageY;
         const translateY =
-          bottomY <= keyboardStartY
-            ? 0
-            : -(bottomY - keyboardStartY + (padding ?? 0));
+          bottomY <= keyboardStartY ? 0 : -(bottomY - keyboardStartY + padding);
 
         setTranslateY(translateY);
       });
@@ -56,7 +54,7 @@ export const KeyboardAvoidingProvider = ({
   useEffect(() => {
     Animated.timing(animatedTranslateY, {
       toValue: translateY,
-      duration: duration ?? 0,
+      duration,
       useNativeDriver: true,
     }).start();
   }, [translateY]);
