@@ -54,7 +54,6 @@ export const KeyboardAvoidingProvider = ({
   }, []);
 
   useEffect(() => {
-    console.log({ translateY });
     Animated.timing(animatedTranslateY, {
       toValue: translateY,
       duration: duration ?? 0,
